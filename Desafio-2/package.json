@@ -1,0 +1,16 @@
+{
+  "name": "desafio-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev" : "nodemon ."
+  },
+  "keywords": [],
+  "author": "Lucio Gastellu Arrieta",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
