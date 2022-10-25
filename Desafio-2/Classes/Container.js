@@ -21,6 +21,7 @@ module.exports = class Container {
 
   autoIncrementId(products) {
     let productsArray = []
+    
     products.map(product => {
       this.idProducts += 1
       product.id = this.idProducts
@@ -45,7 +46,7 @@ module.exports = class Container {
       const productsArray = await JSON.parse(productsString)
       
       const productId = productsArray.find(productId => productId.id === id)
-      
+
       console.log('\n------------------------ Tu producto --------------------------------');
       productId ? console.log(productId) : console.log('No hay productos');
     } catch (error) {
