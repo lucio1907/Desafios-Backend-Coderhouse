@@ -2,7 +2,6 @@ const Container = require("./Classes/Container.js");
 
 const container = new Container();
 
-const file = "productos.txt";
 const productsArray = [
   {
     title: "TV",
@@ -22,44 +21,12 @@ const productsArray = [
 ];
 
 const initApp = () => {
-  try {
-    const newFile = container.createFile(file);
-    newFile ? saveAllProducts() : console.log("No se pudieron guardar los datos");
-    newFile ? getAllProducts() : console.log("No se pudo traer los datos");
-
-    // const productFound = newFile && getProductById(3);
-    // productFound ? console.log("No se pudo borrar tu producto") : deleteByIdApp(2);
-
-    // deleteAllProducts();
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const saveAllProducts = () => {
-  productsArray.map((product) => container.save(product, file));
-};
-
-const getAllProducts = async () => {
-  const allProducts = await container.getAll(file);
-  allProducts ? console.log("Todos tus productos: ", allProducts) : null;
-};
-
-const getProductById = (number) => {
-  const uniqueProduct = container.getById(number, file);
-  uniqueProduct ? console.log("Tu producto: ", uniqueProduct) : null;
-};
-
-const deleteByIdApp = (number) => {
-  const uniqueProduct = container.deleteById(number, file)
-  uniqueProduct ? console.log("Se borró el producto: ", uniqueProduct) : console.log(null);
-};
-
-const deleteAllProducts = () => {
-  const allProducts = container.deleteAll(file);
-  allProducts
-    ? console.log("Se borro toda la lista")
-    : console.log("No se puede borrar porque ya se ha borrado");
+  container.createFile()
+  container.save(productsArray)
+  container.getById(1)
+  container.getAll()
+  // container.deleteById(2)
+  // container.deleteAll()
 };
 
 initApp();

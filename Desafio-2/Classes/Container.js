@@ -1,12 +1,17 @@
 const fs = require("fs");
 module.exports = class Container {
-  async createFile(file) {
+  constructor() {
+    this.idProducts = 0
+    this.file = 'productos.txt'
+  }
+
+  async createFile() {
     try {
-      if (fs.existsSync(file)) {
-        console.log(`Ya existe el archivo "${file.toUpperCase()}"`);
+      if (fs.existsSync(this.file)) {
+        await console.log(`Ya existe el archivo "${this.file.toUpperCase()}"`);
         return false;
       } else {
-        await fs.promises.writeFile(file, "", "UTF-8");
+        await fs.promises.writeFile(this.file, "", "UTF-8");
         return true;
       }
     } catch (error) {
@@ -14,92 +19,74 @@ module.exports = class Container {
     }
   }
 
-    readFiles(file) {
-    let allProducts = [];
-
-    try {
-      let allProductsString = fs.readFileSync(file, "utf-8");
-
-      // Parsear los resultados que haya en el archivo en caso de que estén
-      if (allProductsString.length > 0) {
-        return allProducts = JSON.parse(allProductsString);
-      } else {
-        // Sino devolver un array vacío
-        return allProducts = [];
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
-    return allProducts;
+  autoIncrementId(products) {
+    let productsArray = []
+    products.map(product => {
+      this.idProducts += 1
+      product.id = this.idProducts
+      productsArray = [...productsArray, product]
+    })
+    return productsArray
   }
 
-  async writeFiles(products, file) {
-    // Pasar a string los productos para poder insertarlos en el archivo
-    let productsString = JSON.stringify(products);
+  async save(products) {
+    const idProduts = this.autoIncrementId(products)
 
     try {
-      await fs.writeFileSync(file, productsString);
+      await fs.promises.writeFile(this.file, JSON.stringify(idProduts))
     } catch (error) {
       console.error(error);
     }
   }
 
-  autoIncrementId(file) {
-    let id = 0;
-    const allProducts = this.readFiles(file);
-
-    if (allProducts.length > 0) {
-      id = allProducts[allProducts.length - 1].id;
-    }
-
-    return id + 1;
-  }
-
-  save(product, file) {
+  async getById(id) {
     try {
-      let nextId = this.autoIncrementId(file);
-
-      product.id = nextId;
-
-      const allProducts = this.readFiles(file);
-
-      allProducts.push(product);
-
-      this.writeFiles(allProducts, file);
+      const productsString = await fs.promises.readFile(this.file, 'utf-8')
+      const productsArray = await JSON.parse(productsString)
+      
+      const productId = productsArray.find(productId => productId.id === id)
+      
+      console.log('\n------------------------ Tu producto --------------------------------');
+      productId ? console.log(productId) : console.log('No hay productos');
     } catch (error) {
       console.error(error);
     }
   }
 
-  getById(id, file) {
-    const allProducts = this.readFiles(file);
-
-    const oneProduct = allProducts.find((productId) => productId.id === id);
-
-    return oneProduct ? oneProduct : null;
-  }
-
-  async getAll(file) {
-    return await fs.readFileSync(file, "utf-8");
-  }
-
-  deleteById(id, file) {
-    const allProducts = this.readFiles(file);
-    const productDeleted = allProducts.filter((productId) => productId.id !== id);
-
+  async getAll() {
     try {
-      this.writeFiles(productDeleted, file);
+      const productsString = await fs.promises.readFile(this.file, 'utf-8')
+      const productsArray = await JSON.parse(productsString)
+
+      console.log('\n--------------------- Todos tus productos ---------------------------');
+      console.log(productsArray);
     } catch (error) {
       console.error(error);
     }
   }
 
-  async deleteAll(file) {
-    const allProductsArrayEmpty = [];
-
+  async deleteById(id) {
     try {
-      await this.writeFiles(allProductsArrayEmpty, file);
+      const productsString = await fs.promises.readFile(this.file, 'utf-8')
+      const productsArray = await JSON.parse(productsString)
+      
+      const productDeleted = productsArray.filter(productId => productId.id !== id)
+      
+      console.log(`\nSe ha eliminado el producto con el id ${id}`);
+
+      const productDeletedToString = await JSON.stringify(productDeleted)
+      
+      await fs.promises.writeFile(this.file, productDeletedToString)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async deleteAll() {
+    const arrayProductsEmpty = []
+  
+    try {
+      await fs.promises.writeFile(this.file, JSON.stringify(arrayProductsEmpty))
     } catch (error) {
       console.error(error);
     }
