@@ -22,22 +22,26 @@ const productsArray = [
 ];
 
 const initApp = () => {
-  const newFile = container.createFile(file);
-  newFile ? saveAllProducts() : console.log("No se pudieron guardar los datos");
-  newFile ? getAllProducts() : console.log("No se pudo traer los datos");
+  try {
+    const newFile = container.createFile(file);
+    newFile ? saveAllProducts() : console.log("No se pudieron guardar los datos");
+    newFile ? getAllProducts() : console.log("No se pudo traer los datos");
 
-//   const productFound = newFile && getProductById(2);
-//   !productFound ? deleteById(2) : console.log("No se pudo borrar tu producto");
+    // const productFound = newFile && getProductById(3);
+    // productFound ? console.log("No se pudo borrar tu producto") : deleteByIdApp(2);
 
-//   deleteAllProducts();
+    // deleteAllProducts();
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const saveAllProducts = () => {
   productsArray.map((product) => container.save(product, file));
 };
 
-const getAllProducts = () => {
-  const allProducts = container.getAll(file);
+const getAllProducts = async () => {
+  const allProducts = await container.getAll(file);
   allProducts ? console.log("Todos tus productos: ", allProducts) : null;
 };
 
@@ -46,9 +50,9 @@ const getProductById = (number) => {
   uniqueProduct ? console.log("Tu producto: ", uniqueProduct) : null;
 };
 
-const deleteById = (number) => {
-  const uniqueProduct = container.deleteById(number, file);
-  uniqueProduct ? console.log("Se borró el producto: ", uniqueProduct) : null;
+const deleteByIdApp = (number) => {
+  const uniqueProduct = container.deleteById(number, file)
+  uniqueProduct ? console.log("Se borró el producto: ", uniqueProduct) : console.log(null);
 };
 
 const deleteAllProducts = () => {
