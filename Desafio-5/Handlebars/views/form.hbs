@@ -1,0 +1,12 @@
+<h1 class="text-3xl p-7 text-center font-bold bg-red-500">{{msg}}</h1>
+<div class="mt-5 flex flex-col">
+    <form method="post" action="/api/productos" id="form" class="flex flex-col items-center gap-6">
+        <label class="font-bold">Product Name:</label>
+        <input class="w-4/6 outline-none bg-slate-200 p-2 shadow" id="title" name="title">
+        <label class="font-bold">Price:</label>
+        <input class="w-4/6 outline-none bg-slate-200 p-2 shadow" id="price" name="price" type="number">
+        <label class="font-bold">URL Photo:</label>
+        <input class="w-4/6 outline-none bg-slate-200 p-2 shadow" id="url" name="url">
+        <button type="submit" class="bg-red-400 p-3 px-10 rounded shadow hover:bg-red-500">Enviar</button>
+    </form>
+</div>
