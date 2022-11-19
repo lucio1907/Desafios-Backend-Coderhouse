@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    head
+        include includes/head.pug
+    body 
+        h1.text-3xl.p-7.text-center.font-bold.bg-red-500= msg 
+        .mt-5.flex.flex-col
+            form#form.flex.flex-col.items-center.gap-6(method='post' action='/api/productos')
+                label.font-bold.text-xl Product Name:
+                input#title.outline-none.bg-slate-200.p-2.shadow(class='w-4/6' name='title')
+                label.font-bold.text-xl Price:
+                input#price.outline-none.bg-slate-200.p-2.shadow(class='w-4/6' name='price' type='number')
+                label.font-bold.text-xl URL Photo:
+                input#url.outline-none.bg-slate-200.p-2.shadow(class='w-4/6' name='url')
+                .flex.gap-10
+                    button.bg-red-400.p-3.px-10.rounded.shadow.text-lg(type='submit' class='hover:bg-red-500') Send
+                    if products
+                        button.bg-indigo-500.p-3.px-10.rounded.shadow.text-lg.text-white(class='hover:bg-indigo-600' onclick="location.href='http://localhost:8080/api/productos'") See your Products

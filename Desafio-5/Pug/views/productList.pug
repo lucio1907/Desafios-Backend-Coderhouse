@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+    include includes/head.pug
+    body 
+        h1.text-3xl.p-7.text-center.font-bold.bg-red-500= msg 
+
+        h2.text-center.font-bold.text-xl.mt-5 Your Products:
+
+        if products.length > 0 
+            .flex.flex-col.items-center.justify-center.mt-7
+                each prod in products
+                    .flex.flex-col.my-5.text-xl.font-bold
+                        .flex.gap-10= prod.id
+                            |) Name: 
+                            span.bg-cyan-400.p-1.px-2.rounded.shadow= prod.title
+                            |Price: 
+                            span.bg-cyan-400.p-1.px-2.rounded.shadow= prod.price
+                            |Photo: 
+                            img.w-10.h-10(src=prod.url alt=prod.url)
+                
+                button.bg-red-400.p-3.px-10.my-4.rounded.shadow(onclick="location.href='http://localhost:8080/api/productos'" class='hover:bg-red-500') Insert another Product
+        else  
+            .pt-10
+                p.text-center.text-2xl.font-bold There are no products here
+                .flex.w-full.justify-center.pt-5
+                    button.bg-red-400.p-3.px-10.my-4.rounded.shadow(onclick="location.href='http://localhost:8080/api/productos'" class='hover:bg-red-500') Insert One
