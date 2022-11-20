@@ -1,0 +1,4 @@
+¿Cuál prefiero? - De los tres motores no me convence mucho ninguno, en mi opinion creo que acompleja más la lectura del html, 
+y que es algo que un desarrollador Backend no se tendria que encargar ya que para eso estan los Desarrolladores Front End.
+
+Si es por conveniencia me quedo con handlebars, ya que su sintaxis es la más clara en comparacion a los otros dos.  
