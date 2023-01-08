@@ -44,11 +44,13 @@ class ProductsManager {
     const title = faker.commerce.product();
     const price = faker.commerce.price();
     const url = faker.internet.url();
+    const photo = faker.image.business();
 
     let randomProduct = {
       title,
       price,
       url,
+      photo
     };
 
     return randomProduct;
