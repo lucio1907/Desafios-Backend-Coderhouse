@@ -1,0 +1,19 @@
+<div class="flex justify-center items-center flex-col h-screen bg-slate-200">
+    <h1 class="p-10 uppercase font-bold text-5xl text-indigo-700">Login</h1>
+    <div class="flex">
+        <form action="/user/loginAction" method="post" autocomplete="off">
+            <div class="flex flex-col">
+                <label class="text-center font-bold text-indigo-500">Username</label>
+                <input type="text" name="username" placeholder="Username here..." class="p-2 mt-2 rounded shadow placeholder:text-center placeholder:font-normal focus-visible:outline-none font-bold">
+
+                <label class="text-center font-bold text-indigo-500 mt-6">Password</label>
+                <input type="password" name="password" placeholder="Password here..." class="p-2 mt-2 rounded shadow placeholder:text-center placeholder:font-normal focus-visible:outline-none font-bold">
+
+                <div class="flex justify-center mt-7">
+                    <button class="bg-indigo-500 p-3 w-32 rounded shadow-current">Send</button>
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>
