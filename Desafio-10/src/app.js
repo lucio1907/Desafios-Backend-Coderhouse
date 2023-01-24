@@ -1,15 +1,18 @@
 import express from "express";
 import handlebars from "express-handlebars";
 import cookieParser from "cookie-parser";
+import FileStore from "session-file-store";
 import session from "express-session";
 import { Server } from "socket.io";
 import { productsRoutes } from "./routes/products.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import ProductsManager from "./controllers/products.manager.js";
 import { Container } from "./controllers/chat.manager.js";
-
+import connectionDB from "./config/mongoDB.js";
+import Login from "./controllers/userLogin.manager.js";
 
 const app = express();
+const Store = FileStore(session);
 
 app.use("/content", express.static("public"));
 app.use(express.json());
@@ -17,10 +20,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
   key: process.env.SID,
+  store: new Store({
+    path: "./sessions",
+    ttl: 600
+  }),
   secret: process.env.SECRET,
   resave: true,
   saveUninitialized: true
 }))
+
+connectionDB();
 
 app.engine("handlebars", handlebars.engine());
 app.set("views", "src/views");

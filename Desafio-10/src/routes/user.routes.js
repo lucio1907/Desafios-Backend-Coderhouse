@@ -1,26 +1,47 @@
 import express from "express";
-import knex from "knex";
-import sqliteOptions from "../options/sqlite3.config.js";
-
-const db = knex(sqliteOptions)
+import path from "path";
+import Login from "../controllers/userLogin.manager.js";
+import userLogin from "../models/login.model.js";
 
 const userRoutes = express.Router();
 
+const manager = new Login("usersLogin", userLogin);
+
+const sessionChecker = (req, res, next) => {
+  if (req.session.user && req.cookies.user_sid) {
+    return res.redirect("/api/productos");
+  } else {
+    next();
+  }
+};
+
 userRoutes.get("/login", (req, res) => {
-    res.render("login")
-})
+  res.render("login");
+});
 
-userRoutes.post("/loginAction", async (req, res) => {
-    const { username, password } = req.body;
+userRoutes.post("/loginAction", sessionChecker, async (req, res) => {
+  const { username, password } = req.body;
 
-    // ! TERMINAR ACA
-    try {
-        
-    } catch (error) {
-        console.error(error);
+  try {
+    if (([username, password].includes("") || [username, password] === undefined) || (username.length < 4 || password.length < 4)) {
+      return res.sendFile(path.resolve("public/errorLogin.html"))
     }
 
-    res.json({msg: "ok"})
-})
+    await manager.insert(req.body);
+
+    const user = await manager.findOne({ username });
+
+    if (user) {
+      if (user.password === password) {
+        req.session.user = { username, id: user._id };
+        return res.redirect("/api/productos");
+      }
+    } else {
+      return res.redirect("/login");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 export default userRoutes;

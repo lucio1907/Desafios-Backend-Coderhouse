@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Error</title>
+</head>
+<body>
+    <div class="flex flex-col justify-center items-center h-screen gap-16">
+        <h1 class="text-6xl relative top-70 text-red-500">Error!</h1>
+        <h2 class="font-bold text-5xl">Validation failed, check out your username or password</h2>
+        <a class="bg-indigo-400 p-4 rounded shadow font-bold whitespace-nowrap cursor-pointer hover:bg-indigo-500" onclick="location.href='http://localhost:8080/user/login'">Return to Login</a>
+    </div>
+</body>
+</html>
