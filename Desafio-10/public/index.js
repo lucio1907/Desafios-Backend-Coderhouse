@@ -56,9 +56,29 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.log(error));
 
-    buttonLogout.addEventListener("click", () => {
-      axios.get("/user/logout").then(res => {console.log(res)})
-    })
+  buttonLogout.addEventListener("click", (e) => {
+    e.preventDefault();
+    axios.get("/user/getUser").then((res) => {
+      if (res.statusText === "OK") {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: `Good Bye ${res.data.username}`,
+        });
+      }
+
+      location.href = "/user/login";
+    });
+
+    axios.get("/user/logout").then((res) => console.log(res));
+  });
   // Listado de productos
   socket.on("history", (data) => {
     const allProducts = data.products;

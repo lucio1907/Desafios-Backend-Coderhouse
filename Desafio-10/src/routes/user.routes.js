@@ -34,7 +34,7 @@ userRoutes.post("/loginAction", async (req, res) => {
     if (user) {
       if (user.password === password) {
         req.session.user = { username: user.username, id: user._id };
-        await req.session.save();
+        req.session.save();
         res.redirect("/api/productos")
       }
     }
@@ -51,6 +51,7 @@ userRoutes.get("/getUser", (req, res) => {
 
 userRoutes.get("/logout", (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
+    req.session.destroy()
     res.clearCookie("user_sid");
     res.redirect("/");
   } else {
