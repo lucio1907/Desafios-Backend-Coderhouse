@@ -5,47 +5,34 @@ const productsRoutes = express.Router();
 
 const manager = new ProductsManager();
 
-// let products = []
-
-productsRoutes.get('/', (req, res) => {
-  return res.render("forms");
-})
-
-productsRoutes.post("/", (req, res) => {
-  const product = req.body;
-  
-
-  if (Object.values(product) === "" || isNaN(product.price) || product.price <= 0) {
-    const error = new Error("Field empty");
-    let result = manager.getAllProducts();
-    result.then(products => {
-      return res.send({ msg: error.message, products });
-    })
+const sessionChecker = (req, res, next) => {
+  if (req.session.user && req.cookies.user_sid) {
+    next();
   } else {
-    manager.saveProduct(product);
-
-    let result = manager.getAllProducts();
-    result.then(products => {
-      return res.send({ msg: "Product Added", products });
-    })
+    return res.redirect("/user/login");
   }
+};
+
+productsRoutes.get("/", sessionChecker, (req, res) => {
+  return res.render("forms", { username: req.session.user });
 });
 
-productsRoutes.get("/productos-test", async (req, res) => {
-  let randomProducts = [];
+productsRoutes.post("/", async (req, res) => {
+  const product = req.body;
 
-  try {
-    
-    for (let i = 1; i <= 5; i++) {
-      let result = await manager.generateRandomProducts()
-      result.id = i;
-      randomProducts.push(result);
-    }
-    res.json(randomProducts);
-  } catch (error) {
-    console.error(error);
+  if (
+    Object.values(product) === "" ||
+    isNaN(product.price) ||
+    product.price <= 0
+  ) {
+    const error = new Error("Field empty");
+    return res.status(404).json({ msg: error.message });
+  } else {
+    await manager.saveProduct(product);
+
+    let result = await manager.getAllProducts();
+    console.log(result);
   }
-
-})
+});
 
 export { productsRoutes };

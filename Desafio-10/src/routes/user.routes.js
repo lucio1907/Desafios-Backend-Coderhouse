@@ -15,11 +15,11 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
-userRoutes.get("/login", (req, res) => {
+userRoutes.get("/login", sessionChecker, (req, res) => {
   res.render("login");
 });
 
-userRoutes.post("/loginAction", sessionChecker, async (req, res) => {
+userRoutes.post("/loginAction", async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -33,14 +33,28 @@ userRoutes.post("/loginAction", sessionChecker, async (req, res) => {
 
     if (user) {
       if (user.password === password) {
-        req.session.user = { username, id: user._id };
-        return res.redirect("/api/productos");
+        req.session.user = { username: user.username, id: user._id };
+        await req.session.save();
+        res.redirect("/api/productos")
       }
-    } else {
-      return res.redirect("/login");
     }
+
+    if (!user) return res.redirect("/login");
   } catch (error) {
     console.error(error);
+  }
+});
+
+userRoutes.get("/getUser", (req, res) => {
+  return res.json({ username: req.session.user.username });
+})
+
+userRoutes.get("/logout", (req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+    res.clearCookie("user_sid");
+    res.redirect("/");
+  } else {
+    res.redirect("/user/login");
   }
 });
 

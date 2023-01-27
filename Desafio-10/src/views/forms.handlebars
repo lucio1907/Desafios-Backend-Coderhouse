@@ -1,8 +1,11 @@
 <div id="message">
-
+    {{username}}
+</div>
+<div class="flex p-5">
+    <input id="logout" type="submit" value="Logout" class="bg-red-400 p-2 w-32 rounded font-bold hover:cursor-pointer hover:bg-red-500 duration-100">
 </div>
 <div class="mt-5 flex flex-col">
-    <form id="form" class="flex flex-col items-center gap-6" method="post">
+    <form id="form" class="flex flex-col items-center gap-6" method="post" action="/user/loginAction">
         <label class="font-bold text-xl">Product Name:</label>
         <input class="w-4/6 outline-none bg-slate-200 p-2 shadow" id="title" name="title">
         <label class="font-bold text-xl">Price:</label>
@@ -21,11 +24,14 @@
     <h2 class="text-2xl font-bold mb-10">Chat</h2>
 
     <div id="messages" class="w-100 h-64 bg-white mb-10 overflow-y-scroll">
-        
+
     </div>
 
     <div class="flex gap-6">
-        <input id="chatBox" type="text" placeholder="Type Something..." class="flex flex-end w-3/12 outline-none p-0.5 shadow rounded placeholder:text-sm placeholder:pl-1">
-        <input id="sendButton" type="button" value="Send" class="bg-green-400 w-20 rounded hover:bg-green-500 hover:cursor-pointer"> <span class="text-gray-400">(If you wanna see the last message press send)</span>
+        <input id="chatBox" type="text" placeholder="Type Something..."
+            class="flex flex-end w-3/12 outline-none p-0.5 shadow rounded placeholder:text-sm placeholder:pl-1">
+        <input id="sendButton" type="button" value="Send"
+            class="bg-green-400 w-20 rounded hover:bg-green-500 hover:cursor-pointer"> <span class="text-gray-400">(If
+            you wanna see the last message press send)</span>
     </div>
 </div>

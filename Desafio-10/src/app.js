@@ -52,19 +52,15 @@ let messages = [];
 const container = new Container();
 const productsContainer = new ProductsManager();
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
   console.log(`User ${socket.id} connected`);
-  
-  container.create()
-  productsContainer.create();
 
   socket.on('productos', data => {
     io.emit('history', data)
   })
 
-  productsContainer.getAllProducts().then(products => {
-    socket.emit('allProducts', products)
-  })
+  // const products = await productsContainer.getAllProducts();
+  // socket.emit('allProducts', products)
   
   // Obtener mensajes
   container.getAllMessages().then(res => {

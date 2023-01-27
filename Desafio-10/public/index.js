@@ -5,6 +5,7 @@ const history = document.getElementById("history");
 const chatMessages = document.getElementById("messages");
 const chatInput = document.getElementById("chatBox");
 const sendMessageButton = document.getElementById("sendButton");
+const buttonLogout = document.getElementById("logout");
 
 const backMessage = document.getElementById("message");
 
@@ -44,8 +45,20 @@ productsForm.addEventListener("submit", (e) =>
 );
 
 document.addEventListener("DOMContentLoaded", () => {
-  backMessage.innerHTML = `<h1 class="text-3xl p-7 text-center font-bold bg-red-500">Insert your Products here!</h1>`;
+  axios
+    .get("/user/getUser")
+    .then((res) => {
+      backMessage.innerHTML = `<h1 class="text-3xl p-7 text-center font-bold bg-red-500">${
+        res.data.username
+          ? `Welcome ${res.data.username}`
+          : "Insert your Products here!"
+      }</h1>`;
+    })
+    .catch((error) => console.log(error));
 
+    buttonLogout.addEventListener("click", () => {
+      axios.get("/user/logout").then(res => {console.log(res)})
+    })
   // Listado de productos
   socket.on("history", (data) => {
     const allProducts = data.products;
@@ -110,31 +123,31 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   // Imprimir mensajes
-  socket.on("user", (data, msg) => {
-    if (data.length > 0) {
-      chatMessages.innerHTML = data
-        .map((messages) => {
-          if (messages.user === currentUser) {
-            return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-green-500">${messages.date} User${messages.user} (You): </span><p>${messages.message}</p></div>`;
-          } else {
-            return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-red-500">${messages.date} User${messages.user}: </span><p>${messages.message}</p></div>`;
-          }
-        })
-        .join(" ");
+  // socket.on("user", (data, msg) => {
+  //   if (data.length > 0) {
+  //     chatMessages.innerHTML = data
+  //       .map((messages) => {
+  //         if (messages.user === currentUser) {
+  //           return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-green-500">${messages.date} User${messages.user} (You): </span><p>${messages.message}</p></div>`;
+  //         } else {
+  //           return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-red-500">${messages.date} User${messages.user}: </span><p>${messages.message}</p></div>`;
+  //         }
+  //       })
+  //       .join(" ");
 
-      if (msg.length > 0 || msg !== undefined) {
-        chatMessages.innerHTML = msg
-          .map((messages) => {
-            if (messages.user === currentUser) {
-              return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-green-500">${messages.date} User${messages.user} (You): </span><p>${messages.message}</p></div>`;
-            } else {
-              return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-red-500">${messages.date} User${messages.user}: </span><p>${messages.message}</p></div>`;
-            }
-          })
-          .join(" ");
-      }
-    }
-  });
+  //     if (msg.length > 0 || msg !== undefined) {
+  //       chatMessages.innerHTML = msg
+  //         .map((messages) => {
+  //           if (messages.user === currentUser) {
+  //             return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-green-500">${messages.date} User${messages.user} (You): </span><p>${messages.message}</p></div>`;
+  //           } else {
+  //             return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-red-500">${messages.date} User${messages.user}: </span><p>${messages.message}</p></div>`;
+  //           }
+  //         })
+  //         .join(" ");
+  //     }
+  //   }
+  // });
 
   // Alerta de nuevo usuario conectado
   socket.on("newUserAlert", (newUser) => {
