@@ -9,7 +9,7 @@ class ProductsManager {
   async saveProduct(product) {
     try {
       const newProduct = await this.collection.create(product);
-      console.log(newProduct);
+      return newProduct
     } catch (error) {
       console.error(`❌ Error: ${error}`);
     }

@@ -9,7 +9,6 @@ import userRoutes from "./routes/user.routes.js";
 import ProductsManager from "./controllers/products.manager.js";
 import { Container } from "./controllers/chat.manager.js";
 import connectionDB from "./config/mongoDB.js";
-import Login from "./controllers/userLogin.manager.js";
 
 const app = express();
 const Store = FileStore(session);
@@ -60,6 +59,7 @@ io.on("connection", async (socket) => {
   })
 
   // const products = await productsContainer.getAllProducts();
+  // let products = await productsContainer.getAllProducts();
   // socket.emit('allProducts', products)
   
   // Obtener mensajes

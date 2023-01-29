@@ -143,31 +143,31 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   // Imprimir mensajes
-  // socket.on("user", (data, msg) => {
-  //   if (data.length > 0) {
-  //     chatMessages.innerHTML = data
-  //       .map((messages) => {
-  //         if (messages.user === currentUser) {
-  //           return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-green-500">${messages.date} User${messages.user} (You): </span><p>${messages.message}</p></div>`;
-  //         } else {
-  //           return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-red-500">${messages.date} User${messages.user}: </span><p>${messages.message}</p></div>`;
-  //         }
-  //       })
-  //       .join(" ");
+  socket.on("user", (data, msg) => {
+    if (data.length > 0) {
+      chatMessages.innerHTML = data
+        .map((messages) => {
+          if (messages.user === currentUser) {
+            return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-green-500">${messages.date} User${messages.user} (You): </span><p>${messages.message}</p></div>`;
+          } else {
+            return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-red-500">${messages.date} User${messages.user}: </span><p>${messages.message}</p></div>`;
+          }
+        })
+        .join(" ");
 
-  //     if (msg.length > 0 || msg !== undefined) {
-  //       chatMessages.innerHTML = msg
-  //         .map((messages) => {
-  //           if (messages.user === currentUser) {
-  //             return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-green-500">${messages.date} User${messages.user} (You): </span><p>${messages.message}</p></div>`;
-  //           } else {
-  //             return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-red-500">${messages.date} User${messages.user}: </span><p>${messages.message}</p></div>`;
-  //           }
-  //         })
-  //         .join(" ");
-  //     }
-  //   }
-  // });
+      if (msg.length > 0 || msg !== undefined) {
+        chatMessages.innerHTML = msg
+          .map((messages) => {
+            if (messages.user === currentUser) {
+              return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-green-500">${messages.date} User${messages.user} (You): </span><p>${messages.message}</p></div>`;
+            } else {
+              return `<div class="flex p-1 gap-1 bg-slate-100 backdrop-opacity-50 shadow rounded mt-2"><span class="text-red-500">${messages.date} User${messages.user}: </span><p>${messages.message}</p></div>`;
+            }
+          })
+          .join(" ");
+      }
+    }
+  });
 
   // Alerta de nuevo usuario conectado
   socket.on("newUserAlert", (newUser) => {
