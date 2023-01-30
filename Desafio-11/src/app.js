@@ -21,6 +21,7 @@ app.listen(PORT, () => console.log("Server Up! 🔥"));
 connectionDB();
 
 app.use("/user/login", express.static("public"));
+app.use("/user/dashboard", express.static("public"));
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());

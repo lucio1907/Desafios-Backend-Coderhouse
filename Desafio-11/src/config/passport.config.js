@@ -47,7 +47,7 @@ const initializePassport = () => {
       try {
         const user = await userModel.findOne({ username });
         if (!user) return done(null, false);
-        if (!isValid(username, password)) return done(null, false);
+        if (!isValid(user, password)) return done(null, false);
         return done(null, user);
       } catch (error) {
         done(error);
