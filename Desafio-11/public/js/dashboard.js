@@ -1,11 +1,7 @@
 const userDashboard = document.getElementById("userWelcome");
 
-const generateTitle = () => {
-    // ! ARREGLAR ACA - TIRA BAD REQUEST
-    fetch("../getUser")
-    .then(res => res.text())
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("/user/getUser", { method: "GET" })
+    .then(res => res.json())
     .then(data => console.log(data))
-
-}
-
-generateTitle()
+})

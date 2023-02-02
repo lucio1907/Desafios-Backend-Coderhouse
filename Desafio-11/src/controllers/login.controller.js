@@ -23,7 +23,7 @@ const getUser = async (req, res) => {
 
     const getUserDB = await userModel.findById(user._id) 
 
-    res.json({ user: getUserDB.username })
+    res.status(getUserDB.username ? 200 : 400).json({ user: getUserDB.username })
 }
 
 export { userLogin, login, dashboard, failedLogin, getUser }

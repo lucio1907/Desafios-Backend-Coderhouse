@@ -1,5 +1,6 @@
 import express from "express";
 import passport from "passport";
+import sessionChecker from "../middleware/sessionChecker.middleware.js";
 import { dashboard, failedLogin, getUser, login, userLogin } from "../controllers/login.controller.js";
 
 const userLoginRoute = express.Router();
