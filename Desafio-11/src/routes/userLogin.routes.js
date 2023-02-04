@@ -1,18 +1,30 @@
 import express from "express";
 import passport from "passport";
-import sessionChecker from "../middleware/sessionChecker.middleware.js";
-import { dashboard, failedLogin, getUser, login, userLogin } from "../controllers/login.controller.js";
+import {
+  dashboard,
+  failedLogin,
+  getUser,
+  htmlLogout,
+  login,
+  logout,
+  userLogin,
+} from "../controllers/login.controller.js";
+import routeValidator from "../middleware/passportValidator.middleware.js";
 
 const userLoginRoute = express.Router();
 
 userLoginRoute.get("/login", userLogin);
 
-userLoginRoute.post("/logUser", passport.authenticate("login", { failureRedirect: "/user/failedLogin" }), login)
+userLoginRoute.post("/logUser", passport.authenticate("login", { failureRedirect: "/user/failedLogin" }), login);
 
-userLoginRoute.get("/dashboard", dashboard);
+userLoginRoute.get("/dashboard", routeValidator, dashboard);
 
 userLoginRoute.get("/failedLogin", failedLogin);
 
-userLoginRoute.get("/getUser", passport.authenticate("login"), getUser)
+userLoginRoute.get("/getUser", getUser);
+
+userLoginRoute.get("/htmlLogout", htmlLogout);
+
+userLoginRoute.get("/logout", logout);
 
 export default userLoginRoute;

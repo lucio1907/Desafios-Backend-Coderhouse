@@ -20,13 +20,7 @@ app.listen(PORT, () => console.log("Server Up! 🔥"));
 
 connectionDB();
 
-app.use("/user/login", express.static("public"));
-app.use("/user/dashboard", express.static("public"));
-
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json());
-app.use(cookieParser());
-app.use(session({
+const sessionConfig = session({
     store: MongoStore.create({
         mongoUrl: process.env.MONGO_URI
     }),
@@ -35,7 +29,15 @@ app.use(session({
     cookie: { maxAge: 600000 },
     resave: true,
     saveUninitialized: true
-}))
+})
+
+app.use("/user/login", express.static("public"));
+app.use("/user/dashboard", express.static("public"));
+
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(cookieParser());
+app.use(sessionConfig)
 initializePassport()
 app.use(passport.initialize());
 app.use(passport.session());

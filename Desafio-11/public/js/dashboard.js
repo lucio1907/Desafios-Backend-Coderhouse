@@ -1,7 +1,13 @@
 const userDashboard = document.getElementById("userWelcome");
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("/user/getUser", { method: "GET" })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    const fetching = async () => {
+        const url = "/user/getUser";
+
+        const response = await fetch(url);
+        const data = await response.json()
+        userDashboard.innerHTML = `Welcome <span class="text-indigo-500">${data.user}</span>`;
+    }
+
+    fetching()
 })
