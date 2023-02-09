@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Info</title>
+</head>
+<body>
+    <div class="flex flex-col items-center mt-7">
+        <h1 class="text-4xl font-bold">System Info</h1>
+
+        <div id="infoList" class="flex flex-col justify-center h-[40vh] w-[80vw] gap-5 bg-slate-300 mt-10 p-10 rounded shadow">
+
+        </div>
+
+        <a href="/user/dashboard" class="bg-indigo-500 w-[180px] text-center mt-10 p-3 rounded shadow cursor-pointer hover:bg-indigo-600 font-bold duration-300">Back to Dashboard</a>
+        <span class="m-2 font-bold">or</span>
+        <a href="/user/logout" class="bg-red-400 w-[180px] text-center p-3 rounded shadow cursor-pointer hover:bg-red-500 font-bold duration-300">Logout</a>
+    </div>
+
+    <script src="/info/js/info.js"></script>
+</body>
+</html>
