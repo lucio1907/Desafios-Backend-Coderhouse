@@ -4,7 +4,6 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
 import passport from "passport";
-import sessionChecker from "./middleware/sessionChecker.middleware.js";
 import connectionDB from "./config/connectionDB.js";
 import userRegisterRoute from "./routes/userRegister.routes.js";
 import initializePassport from "./config/passport.config.js";
@@ -50,6 +49,6 @@ app.use("/", infoRoute);
 app.use("/api/randoms", apiRoute);
 app.use("/user", userRegisterRoute, userLoginRoute);
 
-app.get("/", sessionChecker, (req, res) => {
+app.get("/", (req, res) => {
   res.redirect("/user/register");
 });
