@@ -1,0 +1,24 @@
+{
+    "apps": [
+        {
+            "name": "process-1",
+            "script": "src/app.js",
+            "args": "8080 CLUSTER"
+        },
+        {
+            "name": "process-2",
+            "script": "src/app.js",
+            "args": "8081 CLUSTER"
+        },
+        {
+            "name": "process-3",
+            "script": "src/app.js",
+            "args": "8082"
+        },
+        {
+            "name": "process-4",
+            "script": "src/app.js",
+            "args": "8083"
+        }
+    ]
+}

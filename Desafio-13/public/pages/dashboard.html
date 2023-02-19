@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="flex justify-center items-center h-32 bg-teal-200">
+        <h1 id="userWelcome" class="font-bold text-3xl"></h1>
+    </div>
+
+    <div class="mt-5 flex flex-col">
+        <div class="flex flex-row justify-between p-5">
+            <a href="/user/logout" class="bg-red-400 w-[100px] p-2 font-bold text-center rounded shadow-lg hover:bg-red-500 duration-300">Logout</a>   
+            <a href="/info" class="bg-red-400 w-[100px] p-2 font-bold text-center rounded shadow-lg hover:bg-red-500 duration-300">System</a>
+        </div>
+        <form id="form" class="flex flex-col items-center gap-6">
+            <label class="font-bold text-xl">Product Name:</label>
+            <input class="w-4/6 outline-none bg-slate-200 p-2 shadow outline-slate-300 rounded" id="title" name="title">
+            <label class="font-bold text-xl">Price:</label>
+            <input class="w-4/6 outline-none bg-slate-200 p-2 shadow outline-slate-300 rounded" id="price" name="price" type="number">
+            <label class="font-bold text-xl">URL Photo:</label>
+            <input class="w-4/6 outline-none bg-slate-200 p-2 shadow outline-slate-300 rounded" id="url" name="url">
+            <div class="flex gap-10">
+                <button type="submit" class="bg-teal-200 p-3 px-10 rounded shadow hover:bg-teal-300 duration-200 text-lg">Send</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="flex flex-col items-center justify-center mt-7" id="history"></div>
+    
+    <div class="text-center h-full p-8 bg-slate-200" id="chat">
+        <h2 class="text-2xl font-bold mb-10">Chat</h2>
+    
+        <div id="messages" class="w-100 h-64 bg-white mb-10 overflow-y-scroll">
+            
+        </div>
+    
+        <div class="flex gap-6">
+            <input id="chatBox" type="text" placeholder="Type Something..." class="flex flex-end w-3/12 outline-none p-0.5 shadow rounded placeholder:text-sm placeholder:pl-1">
+            <input id="sendButton" type="button" value="Send" class="bg-green-400 w-20 rounded hover:bg-green-500 hover:cursor-pointer"> <span class="text-gray-400">(If you wanna see the last message press send)</span>
+        </div>
+    </div>
+
+    <script src="/user/dashboard/js/dashboard.js"></script>
+</body>
+</html>
