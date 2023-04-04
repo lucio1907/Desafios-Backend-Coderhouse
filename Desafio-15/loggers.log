@@ -1,0 +1,64 @@
+[2023-02-26T16:42:17.013] [INFO] PROD - Route: /infoGzip/, Method: GET
+[2023-02-26T16:42:47.249] [INFO] PROD - Route: /infoGzip/, Method: GET
+[2023-02-26T16:42:54.842] [INFO] PROD - Route: /info/, Method: GET
+[2023-02-26T16:58:14.281] [INFO] PROD - Route: /api/randomNumbers, Method: GET
+[2023-02-26T16:58:14.282] [ERROR] PROD - Route: /api/randomNumbers, Method: GET, ErrorMessage: quantity not specified
+[2023-02-26T17:00:32.252] [INFO] PROD - Route: /api/randomNumbers?quantity=4000, Method: GET
+[2023-02-26T17:01:41.159] [INFO] PROD - Route: /api/randomNumbers, Method: GET
+[2023-02-26T17:01:41.160] [ERROR] PROD - Route: /api/randomNumbers, Method: GET, ErrorMessage: quantity not specified
+[2023-02-26T17:01:56.382] [INFO] PROD - Route: /api/randomNumbers?quantity=4000, Method: GET
+[2023-02-26T17:07:00.665] [WARN] PROD - Route: /dadad, Method: GET, ErrorMessage: nonexistent route
+[2023-02-26T17:07:56.194] [WARN] PROD - Route: /dadad, Method: GET, ErrorMessage: nonexistent route
+[2023-02-26T17:13:28.934] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:28.942] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:28.944] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:28.946] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:28.947] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:28.949] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:28.950] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:28.952] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:28.954] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:28.956] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.131] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.135] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.136] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.138] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.139] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.140] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.142] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.143] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.144] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.145] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.319] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.320] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.321] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.322] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.323] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.324] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.325] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.326] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.327] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.328] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.525] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.530] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.533] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.536] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.539] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.541] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.543] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.546] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.548] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.550] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.719] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.720] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.721] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.722] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.722] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.723] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.724] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.725] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.726] [INFO] PROD - Route: /info, Method: GET
+[2023-02-26T17:13:29.727] [INFO] PROD - Route: /info, Method: GET
+[2023-04-04T15:42:51.433] [WARN] PROD - Route: /, Method: GET, ErrorMessage: nonexistent route
+[2023-04-04T15:42:52.003] [WARN] PROD - Route: /, Method: GET, ErrorMessage: nonexistent route
+[2023-04-04T15:43:20.647] [INFO] PROD - Route: /info, Method: GET
