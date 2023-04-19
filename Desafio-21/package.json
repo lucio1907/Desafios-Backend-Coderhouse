@@ -1,18 +1,12 @@
 {
   "name": "desafio-21",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Servidor simple con DENO y react server-side rendering",
+  "main": "./src/server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "denon run --allow-net ./src/server.ts"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "express-graphql": "^0.12.0",
-    "graphql": "^15.8.0"
-  }
+  "license": "ISC"
 }
